@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/:license-mit-blue.svg)](https://rootulp.mit-license.org)
 
-> source code for [https://portfolio-rootulp.vercel.app/](https://portfolio-rootulp.vercel.app/)
+> source code for [https://www.rootulp.com](https://www.rootulp.com)
 
 This portfolio is built with [Next.js](https://nextjs.org/) and hosted on [Vercel](https://vercel.com).
 
