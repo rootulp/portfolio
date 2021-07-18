@@ -1,14 +1,9 @@
-const YEAR = new Date().getFullYear()
-
 export default {
   footer: (
     <small style={{ display: 'block', marginTop: '8rem' }}>
-      <time>{YEAR}</time> © Your Name.
-      <a href="/feed.xml">RSS</a>
+      Built with <a href="https://nextjs.org/">Next.js</a> and
+      hosted by <a href="https://vercel.com">Vercel</a>
       <style jsx>{`
-        a {
-          float: right;
-        }
         @media screen and (max-width: 480px) {
           article {
             padding-top: 2rem;
