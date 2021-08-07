@@ -1,6 +1,6 @@
 export default {
   footer: (
-    <small style={{ display: 'block', marginTop: '8rem' }}>
+    <div>
       Built with <a href="https://nextjs.org/">Next.js</a> and
       hosted by <a href="https://vercel.com">Vercel</a>
       <style jsx>{`
@@ -11,6 +11,6 @@ export default {
           }
         }
       `}</style>
-    </small>
+    </div>
   )
 }
