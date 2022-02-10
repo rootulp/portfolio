@@ -68,3 +68,10 @@ If you want to talk about any of these, please reach out to me!
   - Data availability proofs use erasure codes
   - [Erasure code](https://en.wikipedia.org/wiki/Erasure_code) takes a message of length N and increases its length for redundancy. The goal is so that if any of the larger message gets lost in transmission, the original message N may still be recoverable.
   - Action item: read more about Celestia: https://celestia.org/resources/
+- [NFT Drops Are Broken: Here’s How We Fix Them](https://nftnow.com/features/nft-drops-are-broken-heres-how-we-fix-them/) by NiftyTable and Takens Theorem
+  - Options to mitigate gas wars caused by NFT drops:
+    1. [Parallel](https://parallel.life/): reserve NFTs off-chain prior to drop. Reservees may pay for NFT during 24 hour time window.
+    2. [MultiRaffle](https://github.com/Anish-Agnihotri/MultiRaffle): users purchase raffle tickets = to the amount an NFT will cost. After raffle ticket purhcase period, winning tickets are revealed using [Chainlink VRF](https://docs.chain.link/docs/chainlink-vrf/). Winning tickets may redeem NFT. Losing tickets may be refunded.
+    3. Add [CAPTCHA](https://en.wikipedia.org/wiki/CAPTCHA) style puzzles to prevent bots from having unfair advantage
+    4. Prompt users with mint transactions going to mempool to use [Flashbots](https://docs.flashbots.net/flashbots-protect/rpc/quick-start/)
+  - Surprised this article didn’t mention [Dutch auction](https://en.wikipedia.org/wiki/Dutch_auction) or [CRISP](https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol)
