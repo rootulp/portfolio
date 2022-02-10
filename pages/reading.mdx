@@ -59,3 +59,12 @@ If you want to talk about any of these, please reach out to me!
   - Exponential Moving Average (EMS)
   - https://github.com/FrankieIsLost/CRISP
   - What if [nouns](https://nouns.wtf/) was implemented with CRISP and a target of one sale per day? Would the nouns DAO treasury be larger or smaller than it currently is? Need [mainnet forking](https://hardhat.org/hardhat-network/guides/mainnet-forking.html) for real history 🙃.
+- https://starknet.io/documentation/on-chain-data/
+  - It is important to publish the state diff between the previous state and the current state to the blockchain. StarkNet publishes this data in the calldata of a transaction posted to L1.
+- https://coinmarketcap.com/alexandria/article/what-is-data-availability
+  - Optimistic rollups use a fraud proof (or proof of fraud) to detect invalid blocks
+  - Zero-knowledge (ZK) rollups use a validity proof to prove that a block is vald
+  - Both Optimistic and ZK rollups need to post data from a block to a data availability layer (commonly L1 but could also be Celestia)
+  - Data availability proofs use erasure codes
+  - [Erasure code](https://en.wikipedia.org/wiki/Erasure_code) takes a message of length N and increases its length for redundancy. The goal is so that if any of the larger message gets lost in transmission, the original message N may still be recoverable.
+  - Action item: read more about Celestia: https://celestia.org/resources/
