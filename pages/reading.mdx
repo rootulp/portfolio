@@ -9,29 +9,31 @@ date: 2022-02-08
 Prior to 2022 I didn't maintain this page but a partial list of my favorite reads are on [Pocket](https://getpocket.com/@cp8p4T62A36aod1542g5815g8ed7AX7a7dtzW8u6aoN1ejpfR1058Rk2yemnKa3b).
 If you want to talk about any of these, please reach out to me!
 
-- https://eips.ethereum.org/EIPS/eip-721
+## 2022
+
+- [EIP-721](https://eips.ethereum.org/EIPS/eip-721)
   - `tokenURI` points to ERC721 Metadata JSON schema which contains properties / image
   - `setApprovalForAll()` authorizes an operator to manage all of the tokens you have from this contract
   - `approve()` authorizes the approved address to manage an individual tokenId
-- https://eips.ethereum.org/EIPS/eip-1155
+- [EIP-1155](https://eips.ethereum.org/EIPS/eip-1155)
   - uses `URI` instead of `tokenURI` from ERC-721
   - enables batch transfers
   - enables one contract to support multiple collections of NFTs
   - enables one contract to support NFTs and SFTs (semi-fungible tokens)
-- https://eips.ethereum.org/EIPS/eip-2981
+- [EIP-2981](https://eips.ethereum.org/EIPS/eip-2981)
   - adds `royaltyInfo()` function that exchanges can opt-in to using in order to determine how much of a token sale should be distributed to creator
-- https://eips.ethereum.org/EIPS/eip-165
+- [EIP-165](https://eips.ethereum.org/EIPS/eip-165)
   - adds `supportsInterface()` function that enables a contract to determine if another contract supports a particular interface
-- https://blog.opensea.io/announcements/introducing-the-collection-manager/
+- [OpenSea collection manager](https://blog.opensea.io/announcements/introducing-the-collection-manager/) by Alex Atallah
   - Uses ERC-1155
   - Is [this](https://polygonscan.com/token/0x2953399124f0cbb46d2cbacd8a89cf0599974963#readContract) collection manager on Polygon?
-- https://research.paradigm.xyz/cartoon-guide-to-perps
+- [The Cartoon Guide to Perps](https://research.paradigm.xyz/cartoon-guide-to-perps) by Dave White
   - perpetual swap == perp
   - mark price: price of perp on exchange
   - index price: price of underlying asset on external exchange
   - funding fee = abs(mark price - index price). Paid between ppl who long and short
   - margin: collateral a trader puts up
-- https://www.paradigm.xyz/2021/05/everlasting-options
+- [Everlasting Options](https://www.paradigm.xyz/2021/05/everlasting-options) by Dave White, Sam Bankman-Fried
   - > A call gives the holder the right to buy a certain asset (the underlier) for a certain price (the strike), at a certain time on a certain date (the expiration).
   - A put option is the right to sell an asset for a price at a certain time
   - call payoff = max(spot - strike, 0)
@@ -39,29 +41,29 @@ If you want to talk about any of these, please reach out to me!
   - [Black-Scholes model](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model) is a curve used to price a call or put prior to expiry
   - options with a expiry date which forces traders who want to maintain their position after the expiry to "roll" (aquire new options with a later expiry)
   - since options have different expiry dates, market makers have fragmented liquidity b/c they need to faciliate markets for options that expire today, tomorrow, next week, etc.
-- https://www.paradigm.xyz/2021/08/power-perpetuals
+- [Power Perpetuals](https://www.paradigm.xyz/2021/08/power-perpetuals) by Dave White, Dan Robinson, Zubin Koticha, Andrew Leone, Alexis Gauba, Aparna Krishnan
   - funding fee = abs(mark - index). Paid between ppl who long and short at a regular interval (ex. daily).
   - funding fee == premium yield
   - > If the price of ETH doubles, the ETH^2 power perp 4Xs
-- https://opyn.gitbook.io/squeeth/resources/squeeth-faq
+- [Squeeth FAQ](https://opyn.gitbook.io/squeeth/resources/squeeth-faq)
   - basis == funding fee == abs(mark - index)
   - funding in-kind: ppl who long Squeeth (buy oSQTH) don't have to explicitly pay funding fee to ppl who short Squeeth per interval (daily).
     Instead, the normalization factor adjusts a long Squeeth position so it loses value equal to the funding fee per interval.
     Similarly, the normalization factor adjusts a short Squeeth position so it owes less debt equal to the funding fee per interval.
   - funding fee = position size * TWAP(mark - index)
   - funding fee is paid everytime contract is touched (continuously)
-- https://www.paradigm.xyz/2021/09/the-community-garden-the-case-for-leaving-faang-companies-for-crypto
+- [The Community Garden: The Case for Leaving FAANG Companies for Crypto](https://www.paradigm.xyz/2021/09/the-community-garden-the-case-for-leaving-faang-companies-for-crypto) by Dan McCarthy
   - reminds me a lot of [Chrix Dixon on Bankless podcast](http://podcast.banklesshq.com/90-5-mental-models-for-web3-chris-dixon)
   - equity package: tokens (liquid) > stock options (illiquid)
   - FAANG can dedicate resources to sponsoring visas for immigrants. Crypto startups usually can't
   - > but in 2021, residence in the US is less important than ever before
-- https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol
+- [Constant Rate Issuance Sales Protocol](https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol) by Dave White, Frankie, Justin Roiland
   - Exponential Moving Average (EMS)
   - https://github.com/FrankieIsLost/CRISP
   - What if [nouns](https://nouns.wtf/) was implemented with CRISP and a target of one sale per day? Would the nouns DAO treasury be larger or smaller than it currently is? Need [mainnet forking](https://hardhat.org/hardhat-network/guides/mainnet-forking.html) for real history 🙃.
-- https://starknet.io/documentation/on-chain-data/
+- [Starknet on-chain data](https://starknet.io/documentation/on-chain-data/)
   - It is important to publish the state diff between the previous state and the current state to the blockchain. StarkNet publishes this data in the calldata of a transaction posted to L1.
-- https://coinmarketcap.com/alexandria/article/what-is-data-availability
+- [What Is Data Availability?](https://coinmarketcap.com/alexandria/article/what-is-data-availability) by Mustafa Al-Bassam
   - Optimistic rollups use a fraud proof (or proof of fraud) to detect invalid blocks
   - Zero-knowledge (ZK) rollups use a validity proof to prove that a block is vald
   - Both Optimistic and ZK rollups need to post data from a block to a data availability layer (commonly L1 but could also be Celestia)
