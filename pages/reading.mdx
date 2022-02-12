@@ -68,8 +68,9 @@ If you want to talk about any of these, please reach out to me!
 - > but in 2021, residence in the US is less important than ever before
 
 [Constant Rate Issuance Sales Protocol](https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol) by Dave White, Frankie, Justin Roiland
+- Interesting application of [control theory](https://en.wikipedia.org/wiki/Control_theory) that adjusts the price of an NFT to target a given sale rate (ex. one sale per day)
 - Exponential Moving Average (EMS)
-- https://github.com/FrankieIsLost/CRISP
+- [Reference implementation](https://github.com/FrankieIsLost/CRISP)
 - What if [nouns](https://nouns.wtf/) was implemented with CRISP and a target of one sale per day? Would the nouns DAO treasury be larger or smaller than it currently is? Need [mainnet forking](https://hardhat.org/hardhat-network/guides/mainnet-forking.html) for real history 🙃.
 
 [Starknet on-chain data](https://starknet.io/documentation/on-chain-data/)
@@ -81,7 +82,7 @@ If you want to talk about any of these, please reach out to me!
 - Both Optimistic and ZK rollups need to post data from a block to a data availability layer (commonly L1 but could also be Celestia)
 - Data availability proofs use erasure codes
 - [Erasure code](https://en.wikipedia.org/wiki/Erasure_code) takes a message of length N and increases its length for redundancy. The goal is so that if any of the larger message gets lost in transmission, the original message N may still be recoverable.
-- Action item: read more about Celestia: https://celestia.org/resources/
+- Action item: read more about [Celestia](https://celestia.org/resources/)
 
 [NFT Drops Are Broken: Here’s How We Fix Them](https://nftnow.com/features/nft-drops-are-broken-heres-how-we-fix-them/) by NiftyTable and Takens Theorem
 - Surprised this article didn’t mention [Dutch auction](https://en.wikipedia.org/wiki/Dutch_auction) or [CRISP](https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol)
@@ -90,3 +91,20 @@ If you want to talk about any of these, please reach out to me!
   2. [MultiRaffle](https://github.com/Anish-Agnihotri/MultiRaffle): users purchase raffle tickets = to the amount an NFT will cost. After raffle ticket purhcase period, winning tickets are revealed using [Chainlink VRF](https://docs.chain.link/docs/chainlink-vrf/). Winning tickets may redeem NFT. Losing tickets may be refunded.
   3. Add [CAPTCHA](https://en.wikipedia.org/wiki/CAPTCHA) style puzzles to prevent bots from having unfair advantage
   4. Prompt users with mint transactions going to mempool to use [Flashbots](https://docs.flashbots.net/flashbots-protect/rpc/quick-start/)
+
+[Nifty Gateway](https://www.finder.com/nifty-gateway-review) and [Nifty gateway custody](https://help.niftygateway.com/hc/en-us/articles/4409003713299-An-Explanation-of-Nifty-Gateway-s-Custody-Option)
+- Nifty Gateway is a subsidiary of Gemini
+- Customers use a custodial wallet for on-platform actions. On-platform actions don't manifest in on-chain transactions to minimize gas fees
+- Supports customers depositing and withdrawing to non-custodial wallets via [Nifty Gateway: Omnibus](http://etherscan.io/address/0xe052113bd7d7700d623414a0a4585bcae754e9d5)
+
+## Backlog
+- https://hackmd.io/@vbuterin/selfdestruct
+- https://eprint.iacr.org/2019/1128.pdf
+- https://blog.simondlr.com/posts/flavours-of-on-chain-svg-nfts-on-ethereum
+- https://www.toptal.com/ethereum/one-click-login-flows-a-metamask-tutorial
+- https://upgrading-ethereum.info/altair/part2/building_blocks/ssz
+- https://polynya.medium.com/danksharding-36dc0c8067fe
+- https://docs.login.xyz/
+- https://squish.substack.com/p/the-triple-halving-where-we-stand
+- https://sive.rs/srs
+- https://www.jackkinsella.ie/articles/janki-method-refined
