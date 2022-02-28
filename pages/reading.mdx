@@ -103,3 +103,9 @@ If you want to talk about any of these, please reach out to me!
 - Use build directives to inform Go compiler which operating systems and architectures to build your program for
 - Use `go tool dist list` to list supported `{operating system}/{architecture}`
 - Per [Go 1.17 release notes](https://go.dev/doc/go1.17#language) prefer `//go:build` over `// +build`
+
+[Stop Using Solidity's transfer() Now](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/)
+- [Fallback function](https://docs.soliditylang.org/en/v0.8.12/contracts.html#fallback-function) has a 2300 fixed gas cost limit
+- Prefer `msg.sender.call.value(amount)("")` over `msg.sender.transfer(amount)`
+- Use [Checks-Effects-Interactions Pattern](https://docs.soliditylang.org/en/v0.5.11/security-considerations.html#re-entrancy) to avoid reentrancy attacks
+- Use [ReentrancyGuard.sol](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol) to avoid reentrancy attacks
