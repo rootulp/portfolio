@@ -97,3 +97,9 @@ If you want to talk about any of these, please reach out to me!
 - Nifty Gateway is a subsidiary of Gemini
 - Customers use a custodial wallet for on-platform actions. On-platform actions don't manifest in on-chain transactions to minimize gas fees
 - Supports customers depositing and withdrawing to non-custodial wallets via [Nifty Gateway: Omnibus](http://etherscan.io/address/0xe052113bd7d7700d623414a0a4585bcae754e9d5)
+
+[Building Go Applications for Different Operating Systems and Architectures](https://www.digitalocean.com/community/tutorials/building-go-applications-for-different-operating-systems-and-architectures)
+- Inpsired by [celestia-node PR#479](https://github.com/celestiaorg/celestia-node/pull/479)
+- Use build directives to inform Go compiler which operating systems and architectures to build your program for
+- Use `go tool dist list` to list supported `{operating system}/{architecture}`
+- Per [Go 1.17 release notes](https://go.dev/doc/go1.17#language) prefer `//go:build` over `// +build`
