@@ -109,3 +109,27 @@ If you want to talk about any of these, please reach out to me!
 - Prefer `msg.sender.call.value(amount)("")` over `msg.sender.transfer(amount)`
 - Use [Checks-Effects-Interactions Pattern](https://docs.soliditylang.org/en/v0.5.11/security-considerations.html#re-entrancy) to avoid reentrancy attacks
 - Use [ReentrancyGuard.sol](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol) to avoid reentrancy attacks
+
+[rarible/protocol](https://github.com/rarible/protocol)
+- [Overview](https://docs.rarible.org/union-sdk/) - Rarible is a protocol that allows for querying, issuing, and trading NFTs. Rarible operates on multiple blockchains. Currently supports Ethereum, Tezos, Flow, Polygon
+- [API reference](https://docs.rarible.org/api-reference/) - Rarible has different endpoints for dev / staging / production. These endpoints correspond to testnets and mainnet for the blockchains they support. [Docs](https://docs.rarible.org/api-reference/).
+- [SDK](https://docs.rarible.org/union-sdk/nft/)
+  - Rarible uniquely identifies contract address by concatenating `BlockchainName:HexAddress`. Example: `ETHEREUM:0xB0EA149212Eb707a1E5FC1D2d3fD318a8d94cf05`
+  - They support royalties although their implementation does not appear to conform to [EIP-2981](https://eips.ethereum.org/EIPS/eip-2981)
+  - They support lazy-minting
+- [protocol-contracts](https://github.com/rarible/protocol-contracts)
+  - Rarible supports off-chain storing a “for-sale” order. They intend on supporting on-chain storing a “for-sale” order.
+  - [Exchange V2](https://github.com/rarible/protocol-contracts/tree/master/exchange-v2) supports listing an asset for sale and filling an order to purchase an asset
+  - [Royalties Registry](https://github.com/rarible/protocol-contracts/tree/master/royalties-registry) doesn’t appear to use [EIP-2981](https://eips.ethereum.org/EIPS/eip-2981)
+  - [token factories](https://docs.rarible.org/ethereum/smart-contracts/tokens/) use an upgradable contract pattern from OpenZepplin: [BeaconProxy](https://docs.openzeppelin.com/contracts/3.x/api/proxy#BeaconProxy)
+- [API and Indexer](https://docs.rarible.org/ethereum/api/ethereum-api-indexer/)
+  - Developed with [Spring](https://spring.io/) framework and use MongoDB (data storage) and Apache Kafka (event handling)
+  - Supports queries of the form: [Search items](https://docs.rarible.org/ethereum/api/search-items/): getNftAllItems. [Search orders](https://docs.rarible.org/ethereum/api/search-orders/): getOrdersAllByStatus
+  - Rarible exposes a JavaScript SDK that can be used both client and server-side: https://github.com/rarible/ethereum-sdk
+- [Metadata](https://docs.rarible.org/ethereum/metadata/ipfs-example/) - They conform to EIP-721 and EIP-1155 standards for storing metadata
+- GitHub
+    1. https://github.com/rarible/protocol
+    2. https://github.com/rarible/protocol-contracts - MIT license. Smart contracts for EVM chains. Uses Solidity
+    3. https://github.com/rarible/flow-contracts - Smart contracts on Flow use a new programming language called [Cadence](https://docs.onflow.org/cadence/)
+    4. https://github.com/rarible/ethereum-indexer - GPLv3 license which grants permission for commercial use, modification, distribution, etc. Written in Kotlin. There is an Open API spec: https://ethereum-api.rarible.org/v0.1/doc
+    5. https://github.com/rarible/solana-indexer - I suspect they plan on adding Solana support soon
