@@ -1,4 +1,3 @@
 export default {
-  footer: null,
-  search: false
+  footer: (null)
 }
