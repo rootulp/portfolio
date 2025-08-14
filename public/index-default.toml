@@ -1,3 +1,10 @@
 [input]
 base_directory = "pages"
-files = []
+files = [
+  { path = "index.mdx", url = "/", title = "Home" },
+  { path = "trekking/index.mdx", url = "/trekking", title = "Trekking" },
+  { path = "trekking/cordillera-huayhuash.mdx", url = "/trekking/cordillera-huayhuash", title = "Cordillera Huayhuash" }
+]
+[output]
+filename = "public/search.st"
+excerpts_per_result = 5
