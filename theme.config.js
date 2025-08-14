@@ -9,10 +9,5 @@ export default {
   readMore: 'Read More →',
   postFooter: null,
   darkMode: true,
-  navs: [
-    {
-      url: '/trekking',
-      name: 'Trekking'
-    }
-  ]
+  navs: []
 }
