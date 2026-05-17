@@ -271,6 +271,23 @@
     height: 1px;
     background: var(--ink);
   }
+  .sub-role {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin: 10px 0 4px;
+  }
+  .role .sub-role:first-of-type {
+    margin-top: 6px;
+  }
+  .sub-role .sub-date {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 10.5px;
+    color: var(--ink-muted);
+    margin-left: 2px;
+  }
   .role li a,
   .summary a {
     color: var(--ink);
@@ -425,43 +442,25 @@
         <div class="role-head">
           <div class="role-title">
             <span class="company">Celestia</span>
-            <span class="sep">—</span>
-            <span class="position">Engineering Manager</span>
           </div>
-          <div class="role-date">Mar 2026 — Present</div>
+          <div class="role-date">Jul 2022 — Present</div>
         </div>
-        <ul>
-          <li>Lead an 8-person team (10 reports including two on loan to adjacent team) owning reliability, performance, and scale for the Celestia protocol</li>
-          <li>Defined and now drive execution against Q2 OKRs spanning network reliability, protocol performance, and scale targets</li>
-        </ul>
-      </div>
 
-      <div class="role">
-        <div class="role-head">
-          <div class="role-title">
-            <span class="company">Celestia</span>
-            <span class="sep">—</span>
-            <span class="position">Team Lead</span>
-          </div>
-          <div class="role-date">Dec 2025 — Mar 2026</div>
-        </div>
+        <div class="sub-role">Engineering Manager <span class="sub-date">· Mar 2026 — Present</span></div>
+        <ul>
+          <li>Lead an 8-person team owning reliability, performance, and scale for the Celestia protocol</li>
+          <li>Set and drive Q2 OKRs across network reliability, protocol performance, and scale</li>
+        </ul>
+
+        <div class="sub-role">Team Lead <span class="sub-date">· Dec 2025 — Mar 2026</span></div>
         <ul>
           <li>Led a 4-person team owning the Celestia consensus layer</li>
         </ul>
-      </div>
 
-      <div class="role">
-        <div class="role-head">
-          <div class="role-title">
-            <span class="company">Celestia</span>
-            <span class="sep">—</span>
-            <span class="position">Senior Software Engineer</span>
-          </div>
-          <div class="role-date">Jul 2022 — Dec 2025</div>
-        </div>
+        <div class="sub-role">Senior Software Engineer <span class="sub-date">· Jul 2022 — Dec 2025</span></div>
         <ul>
-          <li>Led the first consensus layer upgrade (v2.0.0), establishing the upgrade framework used by all subsequent network upgrades</li>
-          <li>Authored 888 and reviewed 1,956 merged pull requests across celestia-app and celestia-core</li>
+          <li>Led Celestia's first consensus-breaking upgrade (v2.0.0), establishing the framework reused by every subsequent network upgrade</li>
+          <li>Authored 1,168 and reviewed 2,427 merged pull requests across celestia-app and celestia-core</li>
         </ul>
       </div>
 
