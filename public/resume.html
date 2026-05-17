@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rootul Patel — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Design tokens ---------- */
+  :root {
+    --ink: #111111;
+    --ink-soft: #3a3a3a;
+    --ink-muted: #6b6b6b;
+    --rule: #d8d4cc;
+    --rule-soft: #ececec;
+    --paper: #fbfaf6;
+    --accent: #7a2e2e;       /* deep oxblood — single accent */
+    --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ece9e1;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ---------- Screen frame ---------- */
+  .frame {
+    padding: 40px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .toolbar {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    max-width: 8.5in;
+    justify-content: flex-end;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  .toolbar button {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 8px 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .toolbar button:hover { background: var(--accent); }
+
+  /* ---------- Page (letter size) ---------- */
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    background: var(--paper);
+    padding: 0.55in 0.7in;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.08);
+    position: relative;
+  }
+
+  /* subtle decorative corner mark */
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0.35in;
+    right: 0.35in;
+    width: 14px;
+    height: 14px;
+    border-top: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  .page::after {
+    content: '';
+    position: absolute;
+    bottom: 0.35in;
+    left: 0.35in;
+    width: 14px;
+    height: 14px;
+    border-bottom: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: end;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .name {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -0.015em;
+    margin: 0;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 6px 0 0;
+    font-weight: 400;
+  }
+
+  .monogram {
+    width: 52px;
+    height: 52px;
+    border: 1.25px solid var(--ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.01em;
+  }
+  .contact a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .contact a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .contact .dot {
+    color: var(--rule);
+    user-select: none;
+  }
+
+  /* ---------- Summary ---------- */
+  .summary {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 18px 0 8px;
+    font-weight: 400;
+  }
+
+  /* ---------- Sections ---------- */
+  section {
+    margin-top: 22px;
+  }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .section-title .count {
+    font-size: 9px;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ---------- Role ---------- */
+  .role { margin-bottom: 14px; }
+  .role:last-child { margin-bottom: 0; }
+
+  .role-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .role-title {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .role-title .company {
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    font-size: 13.5px;
+  }
+  .role-title .sep {
+    color: var(--rule);
+    margin: 0 6px;
+    font-weight: 300;
+  }
+  .role-title .position {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .role-date {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-muted);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .role ul {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0;
+  }
+  .role li {
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 3px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .role li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 1px;
+    background: var(--ink);
+  }
+  .role li a,
+  .summary a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .role li a:hover,
+  .summary a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ---------- Bottom grid ---------- */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 28px;
+    margin-top: 22px;
+  }
+
+  .edu-school {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    font-weight: 500;
+  }
+  .edu-school .institution {
+    font-variant: small-caps;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    font-size: 12.5px;
+  }
+  .edu-degree {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 2px 0;
+  }
+  .edu-date {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-muted);
+    margin-bottom: 4px;
+  }
+  .edu-honors {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  .skills-group {
+    margin-bottom: 12px;
+  }
+  .skills-group:last-child { margin-bottom: 0; }
+
+  .skills-label {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-muted);
+    margin-bottom: 4px;
+  }
+  .skills-list {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  .skills-list .pipe {
+    color: var(--rule);
+    margin: 0 6px;
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    html, body { background: white; }
+    .frame { padding: 0; gap: 0; }
+    .toolbar { display: none; }
+    .page {
+      width: 100%;
+      min-height: auto;
+      box-shadow: none;
+      padding: 0.5in 0.6in;
+    }
+    @page {
+      size: letter;
+      margin: 0;
+    }
+  }
+
+  /* ---------- Responsive (screen viewing) ---------- */
+  @media (max-width: 900px) {
+    .frame { padding: 16px 12px 60px; }
+    .page {
+      width: 100%;
+      max-width: 8.5in;
+      padding: 32px 24px;
+    }
+    .name { font-size: 34px; }
+    header { grid-template-columns: 1fr; }
+    .monogram { display: none; }
+    .role-head { grid-template-columns: 1fr; gap: 2px; }
+    .bottom-grid { grid-template-columns: 1fr; gap: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+
+  <div class="toolbar">
+    <button onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <main class="page">
+
+    <header>
+      <div>
+        <h1 class="name">Rootul Patel</h1>
+        <p class="tagline">Engineering at Celestia &nbsp;·&nbsp; ex-Palantir &nbsp;·&nbsp; ex-AWS</p>
+        <div class="contact">
+          <span>Santa Cruz, CA</span>
+          <span class="dot">/</span>
+          <a href="mailto:rootulp@gmail.com">rootulp@gmail.com</a>
+          <span class="dot">/</span>
+          <a href="tel:+15163595026">(516) 359-5026</a>
+          <span class="dot">/</span>
+          <a href="https://rootulp.xyz" target="_blank" rel="noopener">rootulp.xyz</a>
+          <span class="dot">/</span>
+          <a href="https://linkedin.com/in/rootulp" target="_blank" rel="noopener">linkedin.com/in/rootulp</a>
+        </div>
+      </div>
+      <div class="monogram" aria-hidden="true">RP</div>
+    </header>
+
+    <p class="summary">
+      Engineering Manager leading Celestia's Protocol team, with 10 years of distributed
+      systems experience and deep IC roots in consensus protocols and Go. Shipped seven
+      consensus-breaking upgrades to live mainnet and now drive team-level reliability,
+      performance, and scale objectives. Previously built Ethereum infrastructure at AWS
+      and data platforms at Palantir.
+    </p>
+
+    <section>
+      <h2 class="section-title">
+        <span>Experience</span>
+      </h2>
+
+      <div class="role">
+        <div class="role-head">
+          <div class="role-title">
+            <span class="company">Celestia</span>
+            <span class="sep">—</span>
+            <span class="position">Engineering Manager</span>
+          </div>
+          <div class="role-date">Mar 2026 — Present</div>
+        </div>
+        <ul>
+          <li>Lead an 8-person team (10 reports including two on loan to adjacent team) owning reliability, performance, and scale for the Celestia protocol</li>
+          <li>Defined and now drive execution against Q2 OKRs spanning network reliability, protocol performance, and scale targets</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="role-head">
+          <div class="role-title">
+            <span class="company">Celestia</span>
+            <span class="sep">—</span>
+            <span class="position">Team Lead</span>
+          </div>
+          <div class="role-date">Dec 2025 — Mar 2026</div>
+        </div>
+        <ul>
+          <li>Led a 4-person team owning the Celestia consensus layer</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="role-head">
+          <div class="role-title">
+            <span class="company">Celestia</span>
+            <span class="sep">—</span>
+            <span class="position">Senior Software Engineer</span>
+          </div>
+          <div class="role-date">Jul 2022 — Dec 2025</div>
+        </div>
+        <ul>
+          <li>Led the first consensus layer upgrade (v2.0.0), establishing the upgrade framework used by all subsequent network upgrades</li>
+          <li>Authored 888 and reviewed 1,956 merged pull requests across celestia-app and celestia-core</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="role-head">
+          <div class="role-title">
+            <span class="company">Amazon Web Services</span>
+            <span class="sep">—</span>
+            <span class="position">Software Development Engineer II</span>
+          </div>
+          <div class="role-date">Jun 2020 — Apr 2022</div>
+        </div>
+        <ul>
+          <li>Expanded <a href="https://aws.amazon.com/about-aws/whats-new/2021/03/announcing-general-availability-of-ethereum-on-amazon-managed-blockchain/" target="_blank" rel="noopener">Ethereum support for Amazon Managed Blockchain</a> to 6 AWS regions</li>
+          <li>Recognized as employee of the month 3 times in less than 2 years (team of ~20 engineers)</li>
+          <li>Saved our team $19K+ per month by optimizing Kinesis usage</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="role-head">
+          <div class="role-title">
+            <span class="company">Palantir</span>
+            <span class="sep">—</span>
+            <span class="position">Software Engineer</span>
+          </div>
+          <div class="role-date">Aug 2016 — May 2020</div>
+        </div>
+        <ul>
+          <li>Maintained <a href="https://www.palantir.com/docs/foundry/reports/overview" target="_blank" rel="noopener">Foundry Reports</a>, a cross-platform dashboarding application deployed to hundreds of enterprise organizations</li>
+          <li>Developed <a href="https://www.palantir.com/docs/foundry/data-connection/overview" target="_blank" rel="noopener">Foundry Data Connection</a> application that connected to external databases and systems to enable automated data pipelines into Foundry</li>
+          <li>Awarded patents: <a href="https://patents.google.com/patent/US20180330241A1" target="_blank" rel="noopener"><em>Tools for chemical manufacturing</em></a> and <a href="https://patents.google.com/patent/US11769096B2/en" target="_blank" rel="noopener"><em>Automated risk visualization</em></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="bottom-grid">
+
+      <section style="margin-top:0">
+        <h2 class="section-title"><span>Education</span></h2>
+        <div class="edu-school">
+          <span class="institution">Boston College</span> &nbsp;·&nbsp; Carroll School of Management
+        </div>
+        <div class="edu-degree">B.S. in Management — Computer Science &amp; Information Systems</div>
+        <div class="edu-date">Sep 2012 — May 2016</div>
+        <div class="edu-honors">
+          Dean's Letter of Commendation &nbsp;·&nbsp; Cum Laude &nbsp;·&nbsp; Co-president, Computer Science Society
+        </div>
+      </section>
+
+      <section style="margin-top:0">
+        <h2 class="section-title"><span>Skills</span></h2>
+
+        <div class="skills-group">
+          <div class="skills-label">Languages</div>
+          <div class="skills-list">
+            Go <span class="pipe">·</span> Rust <span class="pipe">·</span> TypeScript
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-label">Domains</div>
+          <div class="skills-list">
+            Distributed systems <span class="pipe">·</span> Consensus protocols (Tendermint/CometBFT) <span class="pipe">·</span> Blockchain infrastructure
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-label">Infrastructure</div>
+          <div class="skills-list">
+            AWS <span class="pipe">·</span> Git
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
