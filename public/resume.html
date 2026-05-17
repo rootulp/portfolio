@@ -324,6 +324,10 @@
   }
 
   /* ---------- Print ---------- */
+  /* These overrides keep the PDF to exactly one page.
+     After editing resume content above, run `yarn resume:pdf`
+     to regenerate public/resume.pdf — the script refuses to
+     write a multi-page PDF, so tighten these rules if it fails. */
   @media print {
     html, body { background: white; }
     .frame { padding: 0; gap: 0; }
