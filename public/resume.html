@@ -81,9 +81,7 @@
   /* ---------- Header ---------- */
   header {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 16px;
-    align-items: end;
+    grid-template-columns: 1fr;
     padding-bottom: 14px;
     border-bottom: 1px solid var(--ink);
   }
@@ -107,31 +105,17 @@
     font-weight: 400;
   }
 
-  .monogram {
-    width: 52px;
-    height: 52px;
-    border: 1.25px solid var(--ink);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 20px;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    flex-shrink: 0;
-  }
 
   .contact {
     display: flex;
-    flex-wrap: wrap;
-    gap: 4px 14px;
+    flex-wrap: nowrap;
+    gap: 4px 12px;
     margin-top: 10px;
     font-family: var(--mono);
     font-size: 10.5px;
     color: var(--ink-soft);
     letter-spacing: 0.01em;
+    white-space: nowrap;
   }
   .contact a {
     color: inherit;
@@ -160,7 +144,7 @@
 
   /* ---------- Sections ---------- */
   section {
-    margin-top: 22px;
+    margin-top: 26px;
   }
 
   .section-title {
@@ -234,9 +218,9 @@
   .role li {
     position: relative;
     padding-left: 14px;
-    margin-bottom: 3px;
-    font-size: 13px;
-    line-height: 1.5;
+    margin-bottom: 6px;
+    font-size: 13.5px;
+    line-height: 1.55;
     color: var(--ink-soft);
   }
   .role li::before {
@@ -247,6 +231,23 @@
     width: 5px;
     height: 1px;
     background: var(--ink);
+  }
+  .sub-role {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin: 10px 0 4px;
+  }
+  .role-head + .sub-role {
+    margin-top: 6px;
+  }
+  .sub-role .sub-date {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 10.5px;
+    color: var(--ink-muted);
+    margin-left: 2px;
   }
   .role li a,
   .summary a {
@@ -266,7 +267,7 @@
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 28px;
-    margin-top: 22px;
+    margin-top: 26px;
   }
 
   .edu-school {
@@ -300,19 +301,22 @@
   }
 
   .skills-group {
-    margin-bottom: 12px;
+    margin-bottom: 5px;
+    line-height: 1.5;
   }
   .skills-group:last-child { margin-bottom: 0; }
 
   .skills-label {
+    display: inline;
     font-family: var(--mono);
     font-size: 9.5px;
     text-transform: uppercase;
     letter-spacing: 0.14em;
     color: var(--ink-muted);
-    margin-bottom: 4px;
+    margin-right: 8px;
   }
   .skills-list {
+    display: inline;
     font-family: var(--serif);
     font-size: 13px;
     color: var(--ink);
@@ -368,7 +372,7 @@
   }
 
   /* ---------- Responsive (screen viewing) ---------- */
-  @media (max-width: 900px) {
+  @media screen and (max-width: 900px) {
     .frame { padding: 16px 12px 60px; }
     .page {
       width: 100%;
@@ -376,8 +380,8 @@
       padding: 32px 24px;
     }
     .name { font-size: 34px; }
-    header { grid-template-columns: 1fr; }
-    .monogram { display: none; }
+
+
     .role-head { grid-template-columns: 1fr; gap: 2px; }
     .bottom-grid { grid-template-columns: 1fr; gap: 18px; }
   }
@@ -405,7 +409,6 @@
           <a href="https://linkedin.com/in/rootulp" target="_blank" rel="noopener">linkedin.com/in/rootulp</a>
         </div>
       </div>
-      <div class="monogram" aria-hidden="true">RP</div>
     </header>
 
     <p class="summary">
@@ -425,43 +428,25 @@
         <div class="role-head">
           <div class="role-title">
             <span class="company">Celestia</span>
-            <span class="sep">—</span>
-            <span class="position">Engineering Manager</span>
           </div>
-          <div class="role-date">Mar 2026 — Present</div>
+          <div class="role-date">Jul 2022 — Present</div>
         </div>
-        <ul>
-          <li>Lead an 8-person team (10 reports including two on loan to adjacent team) owning reliability, performance, and scale for the Celestia protocol</li>
-          <li>Defined and now drive execution against Q2 OKRs spanning network reliability, protocol performance, and scale targets</li>
-        </ul>
-      </div>
 
-      <div class="role">
-        <div class="role-head">
-          <div class="role-title">
-            <span class="company">Celestia</span>
-            <span class="sep">—</span>
-            <span class="position">Team Lead</span>
-          </div>
-          <div class="role-date">Dec 2025 — Mar 2026</div>
-        </div>
+        <div class="sub-role">Engineering Manager <span class="sub-date">· Mar 2026 — Present</span></div>
+        <ul>
+          <li>Lead an 8-person team owning reliability, performance, and scale for the Celestia protocol</li>
+          <li>Set and drive Q2 OKRs across network reliability, protocol performance, and scale</li>
+        </ul>
+
+        <div class="sub-role">Team Lead <span class="sub-date">· Dec 2025 — Mar 2026</span></div>
         <ul>
           <li>Led a 4-person team owning the Celestia consensus layer</li>
         </ul>
-      </div>
 
-      <div class="role">
-        <div class="role-head">
-          <div class="role-title">
-            <span class="company">Celestia</span>
-            <span class="sep">—</span>
-            <span class="position">Senior Software Engineer</span>
-          </div>
-          <div class="role-date">Jul 2022 — Dec 2025</div>
-        </div>
+        <div class="sub-role">Senior Software Engineer <span class="sub-date">· Jul 2022 — Dec 2025</span></div>
         <ul>
-          <li>Led the first consensus layer upgrade (v2.0.0), establishing the upgrade framework used by all subsequent network upgrades</li>
-          <li>Authored 888 and reviewed 1,956 merged pull requests across celestia-app and celestia-core</li>
+          <li>Led Celestia's first consensus-breaking upgrade (v2.0.0), establishing the framework reused by every subsequent network upgrade</li>
+          <li>Authored 1,168 and reviewed 2,427 merged pull requests across celestia-app and celestia-core</li>
         </ul>
       </div>
 
@@ -485,14 +470,18 @@
         <div class="role-head">
           <div class="role-title">
             <span class="company">Palantir</span>
-            <span class="sep">—</span>
-            <span class="position">Software Engineer</span>
           </div>
           <div class="role-date">Aug 2016 — May 2020</div>
         </div>
+
+        <div class="sub-role">Software Engineer <span class="sub-date">· Aug 2017 — May 2020</span></div>
         <ul>
           <li>Maintained <a href="https://www.palantir.com/docs/foundry/reports/overview" target="_blank" rel="noopener">Foundry Reports</a>, a cross-platform dashboarding application deployed to hundreds of enterprise organizations</li>
           <li>Developed <a href="https://www.palantir.com/docs/foundry/data-connection/overview" target="_blank" rel="noopener">Foundry Data Connection</a> application that connected to external databases and systems to enable automated data pipelines into Foundry</li>
+        </ul>
+
+        <div class="sub-role">Forward Deployed Engineer <span class="sub-date">· Aug 2016 — Aug 2017</span></div>
+        <ul>
           <li>Awarded patents: <a href="https://patents.google.com/patent/US20180330241A1" target="_blank" rel="noopener"><em>Tools for chemical manufacturing</em></a> and <a href="https://patents.google.com/patent/US11769096B2/en" target="_blank" rel="noopener"><em>Automated risk visualization</em></a></li>
         </ul>
       </div>
@@ -525,7 +514,7 @@
         <div class="skills-group">
           <div class="skills-label">Domains</div>
           <div class="skills-list">
-            Distributed systems <span class="pipe">·</span> Consensus protocols (Tendermint/CometBFT) <span class="pipe">·</span> Blockchain infrastructure
+            Distributed systems <span class="pipe">·</span> Consensus protocols
           </div>
         </div>
 
