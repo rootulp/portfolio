@@ -235,8 +235,8 @@
   .sub-role {
     font-family: var(--serif);
     font-style: italic;
-    font-size: 13.5px;
-    color: var(--ink-soft);
+    font-size: 12px;
+    color: var(--ink-muted);
     margin: 10px 0 4px;
   }
   .role-head + .sub-role {
@@ -339,31 +339,31 @@
       width: 100%;
       min-height: auto;
       box-shadow: none;
-      padding: 0.35in 0.55in;
+      padding: 0.55in 0.65in;
     }
     .page::before, .page::after { display: none; }
-    header { padding-bottom: 8px; }
-    .name { font-size: 32px; }
-    .tagline { font-size: 12px; margin-top: 4px; }
-    .contact { font-size: 9.5px; margin-top: 6px; }
-    .summary { font-size: 12px; line-height: 1.4; margin: 10px 0 2px; }
-    section { margin-top: 10px; }
-    .section-title { margin: 0 0 7px; padding-bottom: 3px; font-size: 9px; }
-    .role { margin-bottom: 6px; }
-    .role-head { margin-bottom: 1px; }
-    .role-title { font-size: 13px; }
-    .role-title .company { font-size: 11.5px; }
-    .role-date { font-size: 9.5px; }
-    .role li { font-size: 11.5px; line-height: 1.35; margin-bottom: 0; }
-    .bottom-grid { margin-top: 8px; gap: 18px; }
-    .edu-school { font-size: 13px; }
-    .edu-school .institution { font-size: 11.5px; }
-    .edu-degree { font-size: 11.5px; }
-    .edu-date { font-size: 9.5px; margin-bottom: 3px; }
-    .edu-honors { font-size: 11px; line-height: 1.35; }
-    .skills-label { font-size: 8.5px; }
-    .skills-list { font-size: 11.5px; line-height: 1.35; }
-    .skills-group { margin-bottom: 8px; }
+    header { padding-bottom: 12px; }
+    .name { font-size: 38px; }
+    .contact { font-size: 10.5px; margin-top: 10px; }
+    .summary { font-size: 13.5px; line-height: 1.5; margin: 16px 0 6px; }
+    section { margin-top: 20px; }
+    .section-title { margin: 0 0 12px; padding-bottom: 5px; font-size: 10px; }
+    .role { margin-bottom: 14px; }
+    .role-head { margin-bottom: 3px; }
+    .role-title { font-size: 14.5px; }
+    .role-title .company { font-size: 13px; }
+    .role-date { font-size: 10.5px; }
+    .sub-role { font-size: 12px; margin: 8px 0 3px; }
+    .role li { font-size: 12.5px; line-height: 1.5; margin-bottom: 4px; }
+    .bottom-grid { margin-top: 22px; gap: 24px; }
+    .edu-school { font-size: 14px; }
+    .edu-school .institution { font-size: 12.5px; }
+    .edu-degree { font-size: 12.5px; }
+    .edu-date { font-size: 10.5px; margin-bottom: 4px; }
+    .edu-honors { font-size: 12.5px; line-height: 1.45; }
+    .skills-label { font-size: 9.5px; }
+    .skills-list { font-size: 12.5px; line-height: 1.5; }
+    .skills-group { margin-bottom: 10px; }
     @page {
       size: letter;
       margin: 0;
@@ -395,7 +395,6 @@
     <header>
       <div>
         <h1 class="name">Rootul Patel</h1>
-        <p class="tagline">Engineering at Celestia &nbsp;·&nbsp; ex-Palantir &nbsp;·&nbsp; ex-AWS</p>
         <div class="contact">
           <span>Santa Cruz, CA</span>
           <span class="dot">/</span>
@@ -453,11 +452,11 @@
         <div class="role-head">
           <div class="role-title">
             <span class="company">Amazon Web Services</span>
-            <span class="sep">—</span>
-            <span class="position">Software Development Engineer II</span>
           </div>
           <div class="role-date">Jun 2020 — Apr 2022</div>
         </div>
+
+        <div class="sub-role">Software Development Engineer II</div>
         <ul>
           <li>Expanded <a href="https://aws.amazon.com/about-aws/whats-new/2021/03/announcing-general-availability-of-ethereum-on-amazon-managed-blockchain/" target="_blank" rel="noopener">Ethereum support for Amazon Managed Blockchain</a> to 6 AWS regions</li>
           <li>Recognized as employee of the month 3 times in less than 2 years (team of ~20 engineers)</li>
