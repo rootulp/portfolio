@@ -130,31 +130,17 @@
     font-weight: 400;
   }
 
-  .monogram {
-    width: 52px;
-    height: 52px;
-    border: 1.25px solid var(--ink);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 20px;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    flex-shrink: 0;
-  }
 
   .contact {
     display: flex;
-    flex-wrap: wrap;
-    gap: 4px 14px;
+    flex-wrap: nowrap;
+    gap: 4px 12px;
     margin-top: 10px;
     font-family: var(--mono);
     font-size: 10.5px;
     color: var(--ink-soft);
     letter-spacing: 0.01em;
+    white-space: nowrap;
   }
   .contact a {
     color: inherit;
@@ -390,7 +376,8 @@
     }
     .name { font-size: 34px; }
     header { grid-template-columns: 1fr; }
-    .monogram { display: none; }
+
+
     .role-head { grid-template-columns: 1fr; gap: 2px; }
     .bottom-grid { grid-template-columns: 1fr; gap: 18px; }
   }
@@ -422,7 +409,6 @@
           <a href="https://linkedin.com/in/rootulp" target="_blank" rel="noopener">linkedin.com/in/rootulp</a>
         </div>
       </div>
-      <div class="monogram" aria-hidden="true">RP</div>
     </header>
 
     <p class="summary">
