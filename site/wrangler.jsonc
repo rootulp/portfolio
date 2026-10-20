@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "rootulp-portfolio",
+  "account_id": "7cf3f01b84a4934dbcf23f43596eb3af",
   "compatibility_date": "2026-10-20",
   "build": {
     "command": "sh build.sh"
