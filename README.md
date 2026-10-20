@@ -17,7 +17,7 @@ This repo was created with [nextjs-portfolio-starter](https://github.com/vercel-
 
 ## Static version (Cloudflare Workers, in progress)
 
-`site/` holds a plain HTML/CSS version of the site that deploys to Cloudflare Workers static assets. `site/build.sh` copies `site/src` plus the resume and favicon from `public/` into `site/dist`.
+`site/` holds a plain HTML/CSS version of the site that deploys to Cloudflare Workers static assets. `site/build.mjs` copies `site/src` plus the resume and favicon from `public/` into `site/dist`, inlining `styles.css` into each page.
 
 1. `cd site && npm install`
 2. Preview locally with `npx wrangler dev` at [http://localhost:8787](http://localhost:8787)
