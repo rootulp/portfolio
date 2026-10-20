@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Nothing to authenticate or reconnect; dependencies come from .agents/setup.
+set -euo pipefail
