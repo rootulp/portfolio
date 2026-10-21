@@ -12,5 +12,7 @@
   },
   "routes": [{ "pattern": "rootulp.com", "custom_domain": true }],
   "workers_dev": true,
-  "preview_urls": true
+  "preview_urls": true,
+  // Required by `wrangler preview`, which Workers Builds runs for non-production branches.
+  "previews": {}
 }
