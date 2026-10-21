@@ -1,5 +1,5 @@
 services:
   web:
-    command: yarn dev -H 0.0.0.0 -p "$PORT"
+    command: npx wrangler dev --ip 0.0.0.0 --port "$PORT"
     portal:
       title: Portfolio

@@ -6,24 +6,14 @@ on:
     branches: [main]
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-      - run: yarn install --frozen-lockfile
-      - run: yarn lint
-
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: yarn
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Runs build.mjs and validates the Worker config without uploading anything.
+      - run: npx wrangler deploy --dry-run

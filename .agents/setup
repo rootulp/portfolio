@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Prepares a fresh Amp orb: installs JS dependencies so lint, build, and dev work immediately.
+# Prepares a fresh Amp orb: installs wrangler so the site builds and serves immediately.
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
@@ -10,8 +10,5 @@ step() {
   echo "<== $* ($((SECONDS - start))s)"
 }
 
-# The repository uses Yarn classic (yarn.lock v1); the orb image ships it.
-command -v yarn >/dev/null || step corepack enable
-
-# Matches CI. Fast no-op when node_modules from a snapshot already matches yarn.lock.
-step yarn install --frozen-lockfile --non-interactive --prefer-offline
+# Matches CI.
+step npm ci --no-audit --no-fund

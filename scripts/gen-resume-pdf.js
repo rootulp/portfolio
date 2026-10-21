@@ -27,10 +27,10 @@ async function main() {
   const repoRoot = path.resolve(__dirname, '..')
   const inputHtml = process.env.INPUT_HTML
     ? path.resolve(process.env.INPUT_HTML)
-    : path.join(repoRoot, 'public', 'resume.html')
+    : path.join(repoRoot, 'src', 'resume.html')
   const outputPdf = process.env.OUTPUT_PDF
     ? path.resolve(process.env.OUTPUT_PDF)
-    : path.join(repoRoot, 'public', 'resume.pdf')
+    : path.join(repoRoot, 'src', 'resume.pdf')
   const tmpPdf = path.join(os.tmpdir(), `resume-${process.pid}.pdf`)
 
   if (!fs.existsSync(inputHtml)) {
