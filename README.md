@@ -2,23 +2,21 @@
 
 [![license](https://img.shields.io/:license-mit-blue.svg)](https://rootulp.mit-license.org)
 
-This portfolio is built with [Next.js](https://nextjs.org/) and hosted on [Vercel](https://vercel.com).
+This portfolio is plain HTML and CSS, hosted on [Cloudflare Workers static assets](https://developers.cloudflare.com/workers/static-assets/) at [rootulp.com](https://rootulp.com).
 
-This repo was created with [nextjs-portfolio-starter](https://github.com/vercel-solutions/nextjs-portfolio-starter) which uses a library called [Nextra](https://nextra.vercel.app/).
+- `src/` holds the pages, `styles.css`, the resume, and the favicon.
+- `build.mjs` copies `src/` into `dist/` and inlines `styles.css` into each page.
+- `wrangler.jsonc` configures the Worker; `wrangler deploy` runs the build first.
 
 ## Local Development
 
 1. `git clone`
-2. `yarn install`
-3. Start the web server locally with `yarn dev`
-4. Preview local changes at [http://localhost:3000](http://localhost:3000)
-5. Make changes and create a PR. vercel bot should add a link to preview the deployment.
-6. If changes look good, merge the PR.
+2. `npm install`
+3. Start the web server locally with `npm run dev`
+4. Preview local changes at [http://localhost:8787](http://localhost:8787)
+5. Make changes and create a PR.
+6. If changes look good, merge the PR. Cloudflare deploys `main` automatically.
 
-## Static version (Cloudflare Workers, in progress)
+## Resume PDF
 
-`site/` holds a plain HTML/CSS version of the site that deploys to Cloudflare Workers static assets. `site/build.mjs` copies `site/src` plus the resume and favicon from `public/` into `site/dist`, inlining `styles.css` into each page.
-
-1. `cd site && npm install`
-2. Preview locally with `npx wrangler dev` at [http://localhost:8787](http://localhost:8787)
-3. Deploy with `npx wrangler deploy` (needs a `CLOUDFLARE_API_TOKEN`)
+After editing `src/resume.html`, run `npm run resume:pdf` to regenerate `src/resume.pdf` (needs Chrome; set `CHROME_PATH` if it isn't found).

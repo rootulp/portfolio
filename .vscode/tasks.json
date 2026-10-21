@@ -6,7 +6,7 @@
 			"script": "dev",
 			"problemMatcher": [],
 			"label": "npm: dev",
-			"detail": "next"
+			"detail": "wrangler dev"
 		}
 	]
 }
