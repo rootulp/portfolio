@@ -94,44 +94,21 @@ main :is(h2, h3) + * {
   margin-top: 0;
 }
 
-/* Page navigation (About / Trekking) and the post date row. */
-nav,
-.date {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 28px;
-  margin: 0 0 32px;
+/* Home page: the role line under the name and the row of profile links. */
+h1:has(+ .role) {
+  margin-bottom: 8px;
 }
 
-nav {
-  justify-content: flex-end;
-}
-
-nav span,
-.date {
+.role {
+  margin-top: 0;
   color: #4b5563;
 }
 
-table {
-  display: block;
-  overflow-x: auto;
-  margin: 28px 0;
-  border-collapse: collapse;
-  font-size: 14px;
-  line-height: 24px;
-}
-
-th,
-td {
-  padding: 8px 16px;
-  border: 1px solid #d1d5db;
-  text-align: left;
-  font-weight: inherit;
-}
-
-tbody tr:nth-child(even) {
-  background: #f3f4f6;
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin-top: 32px;
 }
 
 @media (max-width: 767px) {
@@ -169,11 +146,5 @@ tbody tr:nth-child(even) {
 
   li {
     margin: 4px 0;
-  }
-
-  table {
-    margin: 24px 0;
-    font-size: 12px;
-    line-height: 18px;
   }
 }
