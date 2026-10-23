@@ -1,0 +1,59 @@
+name: Agent readiness
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 16 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent-readiness
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch production readiness report
+        run: npx --yes is-agentic rootulp.com --json > readiness.json
+      - name: Preserve report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-readiness
+          path: readiness.json
+          retention-days: 30
+      - name: Check score and report freshness
+        env:
+          MIN_SCORE: '80'
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync, appendFileSync } from 'node:fs'
+          const report = JSON.parse(readFileSync('readiness.json', 'utf8'))
+          const scannedAt = Date.parse(report.scanned_at)
+          const age = Date.now() - scannedAt
+          const summary = [
+            '## Production agent readiness',
+            `Score: ${report.score ?? 'unscored'}/100 (minimum ${process.env.MIN_SCORE})`,
+            `Scanned at: ${report.scanned_at}`,
+            `Report: ${report.report_url}`,
+            '',
+            'Reports are cached. A push check may describe the previous deployment; the daily check allows the six-hour refresh window to expire.',
+          ]
+          appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary.join('\n') + '\n')
+          console.log(summary.join('\n'))
+          if (!Number.isFinite(scannedAt) || age < -300_000 || age > 24 * 60 * 60 * 1000) {
+            throw new Error('Readiness report is missing a valid scan date or is over 24 hours old')
+          }
+          if (typeof report.score !== 'number' || !Number.isFinite(report.score) || report.score < Number(process.env.MIN_SCORE)) {
+            throw new Error('Production readiness is unscored or below the minimum; inspect the report artifact')
+          }
+          NODE
