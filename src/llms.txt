@@ -1,0 +1,11 @@
+# Rootul Patel
+
+> Personal site of Rootul Patel, Engineering Manager leading Celestia's Protocol team, with 10 years of distributed systems experience at Celestia, AWS, and Palantir.
+
+## About
+
+- [Homepage](https://rootulp.com/): Biography, current role, and contact and profile links. Supports Markdown via Accept: text/markdown.
+- [Homepage Markdown](https://rootulp.com/index.md): The same homepage content in Markdown.
+- [Resume](https://rootulp.com/resume): Work experience, education, and technical skills.
+- [Resume PDF](https://rootulp.com/resume.pdf): Downloadable resume.
+- [Sitemap](https://rootulp.com/sitemap.xml): Canonical HTML pages.
