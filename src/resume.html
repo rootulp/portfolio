@@ -6,9 +6,6 @@
 <title>Rootul Patel — Resume</title>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* ---------- Design tokens ---------- */
   :root {
@@ -19,9 +16,7 @@
     --rule-soft: #ececec;
     --paper: #fbfaf6;
     --accent: #7a2e2e;       /* deep oxblood — single accent */
-    --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
-    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --sans: Arial, Helvetica, sans-serif;
   }
 
   * { box-sizing: border-box; }
@@ -89,17 +84,16 @@
   }
 
   .name {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 44px;
     line-height: 1;
     letter-spacing: -0.015em;
     margin: 0;
-    font-variation-settings: "opsz" 144;
   }
 
   .tagline {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-style: italic;
     font-size: 14px;
     color: var(--ink-soft);
@@ -113,7 +107,7 @@
     flex-wrap: nowrap;
     gap: 4px 12px;
     margin-top: 10px;
-    font-family: var(--mono);
+    font-family: var(--sans);
     font-size: 10.5px;
     color: var(--ink-soft);
     letter-spacing: 0.01em;
@@ -136,7 +130,7 @@
 
   /* ---------- Summary ---------- */
   .summary {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 14.5px;
     line-height: 1.55;
     color: var(--ink-soft);
@@ -150,7 +144,7 @@
   }
 
   .section-title {
-    font-family: var(--mono);
+    font-family: var(--sans);
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.18em;
@@ -182,7 +176,7 @@
   }
 
   .role-title {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 15.5px;
     font-weight: 500;
     color: var(--ink);
@@ -205,7 +199,7 @@
   }
 
   .role-date {
-    font-family: var(--mono);
+    font-family: var(--sans);
     font-size: 10.5px;
     color: var(--ink-muted);
     letter-spacing: 0.02em;
@@ -235,7 +229,7 @@
     background: var(--ink);
   }
   .sub-role {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-style: italic;
     font-size: 12px;
     color: var(--ink-muted);
@@ -245,7 +239,7 @@
     margin-top: 6px;
   }
   .sub-role .sub-date {
-    font-family: var(--mono);
+    font-family: var(--sans);
     font-style: normal;
     font-size: 10.5px;
     color: var(--ink-muted);
@@ -273,7 +267,7 @@
   }
 
   .edu-school {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 14.5px;
     font-weight: 500;
   }
@@ -284,14 +278,14 @@
     font-size: 12.5px;
   }
   .edu-degree {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-style: italic;
     font-size: 13px;
     color: var(--ink-soft);
     margin: 2px 0;
   }
   .edu-date {
-    font-family: var(--mono);
+    font-family: var(--sans);
     font-size: 10.5px;
     color: var(--ink-muted);
     margin-bottom: 4px;
@@ -310,7 +304,7 @@
 
   .skills-label {
     display: inline;
-    font-family: var(--mono);
+    font-family: var(--sans);
     font-size: 9.5px;
     text-transform: uppercase;
     letter-spacing: 0.14em;
@@ -319,7 +313,7 @@
   }
   .skills-list {
     display: inline;
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 13px;
     color: var(--ink);
     line-height: 1.45;
@@ -331,8 +325,8 @@
 
   /* ---------- Print ---------- */
   /* These overrides keep the PDF to exactly one page.
-     After editing resume content above, run `yarn resume:pdf`
-     to regenerate public/resume.pdf — the script refuses to
+     After editing resume content above, run `npm run resume:pdf`
+     to regenerate src/resume.pdf — the script refuses to
      write a multi-page PDF, so tighten these rules if it fails. */
   @media print {
     html, body { background: white; }
@@ -381,7 +375,7 @@
       padding: 32px 24px;
     }
     .name { font-size: 34px; }
-
+    .contact { flex-wrap: wrap; }
 
     .role-head { grid-template-columns: 1fr; gap: 2px; }
     .bottom-grid { grid-template-columns: 1fr; gap: 18px; }

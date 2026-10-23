@@ -221,7 +221,8 @@ test('trust pages contain substantive content, canonical identity, navigation, a
   }
   assert.match(read('src/contact.html'), /mailto:rootulp@gmail.com/)
   assert.match(read('src/privacy.html'), /Cloudflare/)
-  assert.match(read('src/privacy.html'), /Google Fonts/)
+  assert.doesNotMatch(read('src/privacy.html'), /Google Fonts/)
+  assert.doesNotMatch(read('src/resume.html'), /fonts\.(?:googleapis|gstatic)\.com|@import|@font-face/)
   assert.match(read('src/privacy.html'), /email provider/)
 })
 
