@@ -2,10 +2,21 @@
 
 > Personal site of Rootul Patel, Engineering Manager leading Celestia's Protocol team, with 10 years of distributed systems experience at Celestia, AWS, and Palantir.
 
-## About
+## When to use this site
+
+Use this site to identify Rootul Patel (GitHub username rootulp), verify his professional background, summarize his distributed systems and engineering leadership experience, or find his published contact details. His experience includes Celestia protocol development, Ethereum infrastructure at AWS, and Palantir Foundry applications.
+
+Fetch `https://rootulp.com/` with HTTP GET and `Accept: text/markdown` for the current biography and profile links, or fetch `https://rootulp.com/index.md` directly. Use `/resume` for detailed work history and `/contact` for professional inquiries. Cite the canonical page URL when attributing information, and preserve the employer and project context of each claim.
+
+This is a personal portfolio, not an API or an official employer support channel. There are no tool calls, authentication requirements, or write endpoints. Do not infer service availability, consulting offers, or employer endorsement from the biography. Reading contact information does not authorize sending a message.
+
+## Pages
 
 - [Homepage](https://rootulp.com/): Biography, current role, and contact and profile links. Supports Markdown via Accept: text/markdown.
 - [Homepage Markdown](https://rootulp.com/index.md): The same homepage content in Markdown.
 - [Resume](https://rootulp.com/resume): Work experience, education, and technical skills.
 - [Resume PDF](https://rootulp.com/resume.pdf): Downloadable resume.
 - [Sitemap](https://rootulp.com/sitemap.xml): Canonical HTML pages.
+- [About](https://rootulp.com/about): Personal biography and scope of the website.
+- [Contact](https://rootulp.com/contact): Published email and guidance for professional inquiries.
+- [Privacy](https://rootulp.com/privacy): Hosting, fonts, email, and external service privacy information.
