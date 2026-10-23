@@ -131,7 +131,7 @@ test('all public files and existing resume routes still resolve for HTML and Mar
 })
 
 test('canonical redirects resolve in one hop and preserve negotiation', async () => {
-  for (const [alias, canonical] of [['/index.html', '/'], ['/resume.html', '/resume']]) {
+  for (const [alias, canonical] of [['/index.html', '/'], ['/resume.html', '/resume'], ...['about', 'contact', 'privacy'].map((path) => [`/${path}.html`, `/${path}`])]) {
     const redirect = await request(alias, 'text/html', { redirect: 'manual' })
     assert.equal(redirect.status, 307)
     assert.equal(new URL(redirect.headers.get('location'), `http://${site.address}:${site.port}`).pathname, canonical)
@@ -155,7 +155,7 @@ test('machine-readable discovery files use canonical URLs and link to working en
   const xml = await sitemap.text()
   assert.match(xml, /<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/)
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
-  assert.deepEqual(urls, ['https://rootulp.com/', 'https://rootulp.com/resume'])
+  assert.deepEqual(urls, ['https://rootulp.com/', 'https://rootulp.com/resume', ...['about', 'contact', 'privacy'].map((path) => `https://rootulp.com/${path}`)])
   const guide = await request('/llms.txt')
   assert.match(guide.headers.get('content-type'), /^text\/plain/)
   const markdown = await guide.text()
@@ -165,4 +165,74 @@ test('machine-readable discovery files use canonical URLs and link to working en
     assert.equal(response.status, 200, url)
     await response.arrayBuffer()
   }
+})
+
+
+test('homepage metadata provides a fetchable PNG social image and accurate personal contact schema', async () => {
+  const response = await request('/')
+  const html = await response.text()
+  assert.match(html, /<html lang="en">/)
+  assert.match(html, /<meta property="og:type" content="profile">/)
+  assert.match(html, /As a distributed systems engineering manager/)
+  const imageUrl = html.match(/<meta property="og:image" content="([^"]+)">/)[1]
+  assert.equal(imageUrl, 'https://rootulp.com/og-image.png')
+  const image = await request(new URL(imageUrl).pathname)
+  assert.equal(image.status, 200)
+  assert.match(image.headers.get('content-type'), /^image\/png/)
+  const png = Buffer.from(await image.arrayBuffer())
+  assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a')
+  assert.equal(png.readUInt32BE(16), 1200)
+  assert.equal(png.readUInt32BE(20), 630)
+  const person = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])
+  assert.equal(person['@type'], 'Person')
+  assert.equal(person.email, 'mailto:rootulp@gmail.com')
+  assert.equal(person.contactPoint['@type'], 'ContactPoint')
+  assert.equal(person.contactPoint.email, person.email.replace('mailto:', ''))
+  assert.equal(person.contactPoint.contactType, 'Professional inquiries')
+  assert.equal(person.contactPoint.url, 'https://rootulp.com/contact')
+  assert.equal(person.worksFor['@type'], 'Organization')
+  assert.equal(person.worksFor.name, 'Celestia')
+  assert.equal(person.address, undefined, 'Do not invent an unpublished postal address')
+})
+
+test('trust pages contain substantive content, canonical identity, navigation, and working internal links', async () => {
+  for (const path of ['/about', '/contact', '/privacy']) {
+    for (const method of ['GET', 'HEAD']) {
+      const response = await request(path, 'text/html', { method, redirect: 'manual' })
+      assert.equal(response.status, 200, path)
+      assert.match(response.headers.get('content-type'), /^text\/html/)
+      const html = await response.text()
+      if (method === 'HEAD') { assert.equal(html, ''); continue }
+      assert.match(html, /<html lang="en">/)
+      assert.ok(html.includes(`<link rel="canonical" href="https://rootulp.com${path}">`))
+      const main = html.match(/<main>([\s\S]*?)<\/main>/)[1]
+      assert.equal([...main.matchAll(/<h1>/g)].length, 1)
+      const content = main.replace(/<p class="links">[\s\S]*?<\/p>/g, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+      assert.ok(content.length >= 500, `${path}: ${content.length} characters`)
+      assert.ok(html.includes(`<style>\n${read('src/styles.css')}</style>`))
+      for (const [, href] of main.matchAll(/href="(\/[^"]*)"/g)) {
+        const linked = await request(href, 'text/html', { redirect: 'manual' })
+        assert.equal(linked.status, 200, href)
+        await linked.arrayBuffer()
+      }
+    }
+    const home = await request('/')
+    assert.ok((await home.text()).includes(`href="${path}"`))
+  }
+  assert.match(read('src/contact.html'), /mailto:rootulp@gmail.com/)
+  assert.match(read('src/privacy.html'), /Cloudflare/)
+  assert.match(read('src/privacy.html'), /Google Fonts/)
+  assert.match(read('src/privacy.html'), /email provider/)
+})
+
+test('llms guide states concrete use cases, retrieval instructions, limitations, and trust links', async () => {
+  const response = await request('/llms.txt', 'text/plain', { redirect: 'manual' })
+  assert.equal(response.status, 200)
+  const guide = await response.text()
+  assert.match(guide, /## When to use this site\n/)
+  assert.match(guide, /verify his professional background/)
+  assert.match(guide, /HTTP GET and `Accept: text\/markdown`/)
+  assert.match(guide, /Cite the canonical page URL/)
+  assert.match(guide, /no tool calls, authentication requirements, or write endpoints/)
+  for (const path of ['about', 'contact', 'privacy']) assert.ok(guide.includes(`https://rootulp.com/${path}`))
 })
