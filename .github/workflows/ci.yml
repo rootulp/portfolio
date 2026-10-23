@@ -15,5 +15,6 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm test
       # Runs build.mjs and validates the Worker config without uploading anything.
       - run: npx wrangler deploy --dry-run
