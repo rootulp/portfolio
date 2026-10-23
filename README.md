@@ -44,11 +44,19 @@ Search ranking requires search engines to recrawl and index the site. Once deplo
 
 ## Identity and agent guidance
 
+Home introduces the professional work; About covers interests outside work and the site's personal scope; the resume holds detailed experience. Keep these roles distinct when updating content. The About URL, navigation, and discovery links remain available to readers and agents.
+
 `llms.txt` describes when to use this portfolio, how to retrieve its content, and the limits of its personal scope. The homepage uses Schema.org `Person` with a `ContactPoint` for the published email, `rootulp@gmail.com`. Celestia is represented only as the person's employer. An audit requesting an `Organization` postal address does not justify inventing a business or publishing an unverified address. Add organization details only if the owner confirms a separate organization and a public address.
 
 The homepage keeps its descriptive name-and-specialty title and now names distributed systems engineering in the biography. All three trust pages are linked from the homepage, site guide, and sitemap. The privacy page describes the code's current behavior, Cloudflare hosting, and the resume's Google Fonts requests; review it when adding third-party scripts or data collection.
 
 After publishing, repeat the public checks above and request a fresh Is Agentic scan. Compare `scanned_at` to avoid treating a cached report as verification of the changes. Search Console submission requires the owner's account, and search ranking and earned profile/press links remain external follow-up work.
+
+## Agent readiness monitoring
+
+The `Agent readiness` GitHub Actions workflow checks production on pushes to `main`, daily at 16:17 UTC, and on manual dispatch. It runs the official Is Agentic CLI, saves the JSON report for 30 days, and records the score, scan date, and report link in the job summary. A score below 80, an unscored result, or a report over 24 hours old fails the check; GitHub Actions notification settings control delivery.
+
+Is Agentic caches reports for six hours. A successful push check can still describe the previous deployment, so compare `scanned_at` with the deployment time before claiming the change preserved the score. The next daily run checks again after that cache window. This audit is separate from CI and does not block the deployment needed for a new scan.
 
 ## Resume PDF
 

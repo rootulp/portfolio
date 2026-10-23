@@ -17,6 +17,6 @@ This is a personal portfolio, not an API or an official employer support channel
 - [Resume](https://rootulp.com/resume): Work experience, education, and technical skills.
 - [Resume PDF](https://rootulp.com/resume.pdf): Downloadable resume.
 - [Sitemap](https://rootulp.com/sitemap.xml): Canonical HTML pages.
-- [About](https://rootulp.com/about): Personal biography and scope of the website.
+- [About](https://rootulp.com/about): Interests outside work, triathlon results and reading links, and scope of the website.
 - [Contact](https://rootulp.com/contact): Published email and guidance for professional inquiries.
 - [Privacy](https://rootulp.com/privacy): Hosting, fonts, email, and external service privacy information.
