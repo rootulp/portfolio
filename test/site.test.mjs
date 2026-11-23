@@ -243,3 +243,19 @@ test('homepage and resume do not state an explicit team size for the current rol
     assert.doesNotMatch(read(file), /8-person/, file)
   }
 })
+
+test('resume uses a small, consistent type system', () => {
+  const html = read('src/resume.html')
+  const css = html.match(/<style>([\s\S]*?)<\/style>/)[1]
+  assert.doesNotMatch(css, /small-caps/, 'no faux small caps')
+  assert.doesNotMatch(css, /font-style:\s*italic/, 'no italics')
+  assert.doesNotMatch(html, /<em>/, 'no inline italics')
+  for (const [, weight] of css.matchAll(/font-weight:\s*([^;]+);/g)) {
+    assert.match(weight, /^(?:400|700)$/, `weight ${weight} is not regular or bold`)
+  }
+  const tokens = [...css.matchAll(/--size-([a-z]+):/g)].map(([, name]) => name)
+  assert.ok(new Set(tokens).size <= 4, `at most 4 type sizes, got ${[...new Set(tokens)]}`)
+  for (const [, size] of css.matchAll(/(?<!-)font-size:\s*([^;]+);/g)) {
+    assert.match(size, /^var\(--size-[a-z]+\)$/, `font-size ${size} must use a --size-* token`)
+  }
+})

@@ -8,15 +8,21 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>
   /* ---------- Design tokens ---------- */
+  /* One font, two weights (400/700), four sizes. Keep it that way:
+     test/site.test.mjs enforces it. */
   :root {
     --ink: #111111;
-    --ink-soft: #3a3a3a;
-    --ink-muted: #6b6b6b;
+    --ink-soft: #333333;
+    --ink-muted: #666666;
     --rule: #d8d4cc;
-    --rule-soft: #ececec;
     --paper: #fbfaf6;
-    --accent: #7a2e2e;       /* deep oxblood — single accent */
+    --accent: #7a2e2e;
     --sans: Arial, Helvetica, sans-serif;
+
+    --size-name: 30px;
+    --size-heading: 14px;
+    --size-body: 13px;
+    --size-meta: 11px;
   }
 
   * { box-sizing: border-box; }
@@ -27,11 +33,15 @@
     background: #ece9e1;
     color: var(--ink);
     font-family: var(--sans);
-    font-size: 14px;
+    font-size: var(--size-body);
+    font-weight: 400;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  h1, h2, h3 { margin: 0; }
+  strong { font-weight: 700; }
 
   /* ---------- Screen frame ---------- */
   .frame {
@@ -39,9 +49,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
   }
-
 
   /* ---------- Page (letter size) ---------- */
   .page {
@@ -50,212 +58,94 @@
     background: var(--paper);
     padding: 0.55in 0.7in;
     box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.08);
-    position: relative;
-  }
-
-  /* subtle decorative corner mark */
-  .page::before {
-    content: '';
-    position: absolute;
-    top: 0.35in;
-    right: 0.35in;
-    width: 14px;
-    height: 14px;
-    border-top: 1px solid var(--rule);
-    border-right: 1px solid var(--rule);
-  }
-  .page::after {
-    content: '';
-    position: absolute;
-    bottom: 0.35in;
-    left: 0.35in;
-    width: 14px;
-    height: 14px;
-    border-bottom: 1px solid var(--rule);
-    border-left: 1px solid var(--rule);
   }
 
   /* ---------- Header ---------- */
   header {
-    display: grid;
-    grid-template-columns: 1fr;
-    padding-bottom: 14px;
+    padding-bottom: 12px;
     border-bottom: 1px solid var(--ink);
   }
 
   .name {
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 44px;
-    line-height: 1;
-    letter-spacing: -0.015em;
-    margin: 0;
+    font-size: var(--size-name);
+    font-weight: 700;
+    line-height: 1.1;
   }
-
-  .tagline {
-    font-family: var(--sans);
-    font-style: italic;
-    font-size: 14px;
-    color: var(--ink-soft);
-    margin: 6px 0 0;
-    font-weight: 400;
-  }
-
 
   .contact {
     display: flex;
     flex-wrap: nowrap;
-    gap: 4px 12px;
-    margin-top: 10px;
-    font-family: var(--sans);
-    font-size: 10.5px;
+    gap: 4px 10px;
+    margin-top: 8px;
+    font-size: var(--size-meta);
     color: var(--ink-soft);
-    letter-spacing: 0.01em;
     white-space: nowrap;
   }
-  .contact a {
+  .contact .dot { color: var(--rule); user-select: none; }
+
+  /* ---------- Links ---------- */
+  a {
     color: inherit;
     text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.15s ease, color 0.15s ease;
+    border-bottom: 1px solid var(--rule);
   }
-  .contact a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-  .contact .dot {
-    color: var(--rule);
-    user-select: none;
-  }
+  .contact a { border-bottom-color: transparent; }
+  a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
   /* ---------- Summary ---------- */
   .summary {
-    font-family: var(--sans);
-    font-size: 14.5px;
-    line-height: 1.55;
     color: var(--ink-soft);
-    margin: 18px 0 8px;
-    font-weight: 400;
+    margin: 16px 0 0;
   }
 
   /* ---------- Sections ---------- */
-  section {
-    margin-top: 26px;
-  }
+  section { margin-top: 22px; }
 
   .section-title {
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
+    font-size: var(--size-meta);
+    font-weight: 700;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 14px;
-    padding-bottom: 6px;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
     border-bottom: 1px solid var(--rule);
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-  }
-  .section-title .count {
-    font-size: 9px;
-    color: var(--ink-muted);
-    letter-spacing: 0.1em;
   }
 
-  /* ---------- Role ---------- */
+  /* ---------- Entries (roles, education) ---------- */
   .role { margin-bottom: 14px; }
   .role:last-child { margin-bottom: 0; }
 
-  .role-head {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
+  .row {
+    display: flex;
+    justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 4px;
+    gap: 12px;
   }
 
-  .role-title {
-    font-family: var(--sans);
-    font-size: 15.5px;
-    font-weight: 500;
-    color: var(--ink);
-    line-height: 1.25;
+  .company {
+    font-size: var(--size-heading);
+    font-weight: 700;
   }
-  .role-title .company {
-    font-variant: small-caps;
-    letter-spacing: 0.06em;
-    font-weight: 600;
-    font-size: 13.5px;
-  }
-  .role-title .sep {
-    color: var(--rule);
-    margin: 0 6px;
-    font-weight: 300;
-  }
-  .role-title .position {
-    font-style: italic;
+
+  .date {
     font-weight: 400;
-  }
-
-  .role-date {
-    font-family: var(--sans);
-    font-size: 10.5px;
+    font-size: var(--size-meta);
     color: var(--ink-muted);
-    letter-spacing: 0.02em;
     white-space: nowrap;
   }
 
-  .role ul {
-    list-style: none;
-    padding: 0;
-    margin: 4px 0 0;
-  }
-  .role li {
-    position: relative;
-    padding-left: 14px;
-    margin-bottom: 6px;
-    font-size: 13.5px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-  }
-  .role li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.62em;
-    width: 5px;
-    height: 1px;
-    background: var(--ink);
-  }
-  .sub-role {
-    font-family: var(--sans);
-    font-style: italic;
-    font-size: 12px;
-    color: var(--ink-muted);
-    margin: 10px 0 4px;
-  }
-  .role-head + .sub-role {
+  .position {
+    font-weight: 700;
     margin-top: 6px;
   }
-  .sub-role .sub-date {
-    font-family: var(--sans);
-    font-style: normal;
-    font-size: 10.5px;
-    color: var(--ink-muted);
-    margin-left: 2px;
+
+  .role ul {
+    margin: 2px 0 0;
+    padding-left: 16px;
   }
-  .role li a,
-  .summary a {
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--rule);
-    transition: color 0.15s ease, border-color 0.15s ease;
-  }
-  .role li a:hover,
-  .summary a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
+  .role li {
+    margin-bottom: 3px;
+    color: var(--ink-soft);
   }
 
   /* ---------- Bottom grid ---------- */
@@ -263,65 +153,11 @@
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 28px;
-    margin-top: 26px;
   }
+  .bottom-grid section { margin-top: 22px; }
 
-  .edu-school {
-    font-family: var(--sans);
-    font-size: 14.5px;
-    font-weight: 500;
-  }
-  .edu-school .institution {
-    font-variant: small-caps;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-    font-size: 12.5px;
-  }
-  .edu-degree {
-    font-family: var(--sans);
-    font-style: italic;
-    font-size: 13px;
-    color: var(--ink-soft);
-    margin: 2px 0;
-  }
-  .edu-date {
-    font-family: var(--sans);
-    font-size: 10.5px;
-    color: var(--ink-muted);
-    margin-bottom: 4px;
-  }
-  .edu-honors {
-    font-size: 12.5px;
-    color: var(--ink-soft);
-    line-height: 1.4;
-  }
-
-  .skills-group {
-    margin-bottom: 5px;
-    line-height: 1.5;
-  }
-  .skills-group:last-child { margin-bottom: 0; }
-
-  .skills-label {
-    display: inline;
-    font-family: var(--sans);
-    font-size: 9.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--ink-muted);
-    margin-right: 8px;
-  }
-  .skills-list {
-    display: inline;
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--ink);
-    line-height: 1.45;
-  }
-  .skills-list .pipe {
-    color: var(--rule);
-    margin: 0 6px;
-  }
+  .muted { color: var(--ink-soft); }
+  .skills-group { margin-bottom: 3px; }
 
   /* ---------- Print ---------- */
   /* These overrides keep the PDF to exactly one page.
@@ -329,56 +165,30 @@
      to regenerate src/resume.pdf — the script refuses to
      write a multi-page PDF, so tighten these rules if it fails. */
   @media print {
+    :root {
+      --size-name: 28px;
+      --size-heading: 13.5px;
+      --size-body: 12.5px;
+      --size-meta: 10.5px;
+    }
     html, body { background: white; }
-    .frame { padding: 0; gap: 0; }
+    .frame { padding: 0; }
     .page {
       width: 100%;
       min-height: auto;
       box-shadow: none;
       padding: 0.55in 0.65in;
     }
-    .page::before, .page::after { display: none; }
-    header { padding-bottom: 12px; }
-    .name { font-size: 38px; }
-    .contact { font-size: 10.5px; margin-top: 10px; }
-    .summary { font-size: 13.5px; line-height: 1.5; margin: 16px 0 6px; }
-    section { margin-top: 20px; }
-    .section-title { margin: 0 0 12px; padding-bottom: 5px; font-size: 10px; }
-    .role { margin-bottom: 14px; }
-    .role-head { margin-bottom: 3px; }
-    .role-title { font-size: 14.5px; }
-    .role-title .company { font-size: 13px; }
-    .role-date { font-size: 10.5px; }
-    .sub-role { font-size: 12px; margin: 8px 0 3px; }
-    .role li { font-size: 12.5px; line-height: 1.5; margin-bottom: 4px; }
-    .bottom-grid { margin-top: 22px; gap: 24px; }
-    .edu-school { font-size: 14px; }
-    .edu-school .institution { font-size: 12.5px; }
-    .edu-degree { font-size: 12.5px; }
-    .edu-date { font-size: 10.5px; margin-bottom: 4px; }
-    .edu-honors { font-size: 12.5px; line-height: 1.45; }
-    .skills-label { font-size: 9.5px; }
-    .skills-list { font-size: 12.5px; line-height: 1.5; }
-    .skills-group { margin-bottom: 10px; }
-    @page {
-      size: letter;
-      margin: 0;
-    }
+    @page { size: letter; margin: 0; }
   }
 
   /* ---------- Responsive (screen viewing) ---------- */
   @media screen and (max-width: 900px) {
     .frame { padding: 16px 12px 60px; }
-    .page {
-      width: 100%;
-      max-width: 8.5in;
-      padding: 32px 24px;
-    }
-    .name { font-size: 34px; }
-    .contact { flex-wrap: wrap; }
-
-    .role-head { grid-template-columns: 1fr; gap: 2px; }
-    .bottom-grid { grid-template-columns: 1fr; gap: 18px; }
+    .page { width: 100%; max-width: 8.5in; min-height: auto; padding: 32px 24px; }
+    .contact { flex-wrap: wrap; white-space: normal; }
+    .row { flex-direction: column; gap: 0; }
+    .bottom-grid { grid-template-columns: 1fr; gap: 0; }
   }
 </style>
 </head>
@@ -414,30 +224,26 @@
     </p>
 
     <section>
-      <h2 class="section-title">
-        <span>Experience</span>
-      </h2>
+      <h2 class="section-title">Experience</h2>
 
       <div class="role">
-        <div class="role-head">
-          <div class="role-title">
-            <span class="company">Celestia</span>
-          </div>
-          <div class="role-date">Jul 2022 — Present</div>
+        <div class="row">
+          <h3 class="company">Celestia</h3>
+          <div class="date">Jul 2022 — Present</div>
         </div>
 
-        <div class="sub-role">Engineering Manager <span class="sub-date">· Mar 2026 — Present</span></div>
+        <div class="row position"><span>Engineering Manager</span><span class="date">Mar 2026 — Present</span></div>
         <ul>
           <li>Lead the team owning reliability, performance, and scale for the Celestia protocol</li>
           <li>Set and drive quarterly OKRs across network reliability, protocol performance, and scale</li>
         </ul>
 
-        <div class="sub-role">Team Lead <span class="sub-date">· Dec 2025 — Mar 2026</span></div>
+        <div class="row position"><span>Team Lead</span><span class="date">Dec 2025 — Mar 2026</span></div>
         <ul>
           <li>Led a 4-person team owning the Celestia consensus layer</li>
         </ul>
 
-        <div class="sub-role">Senior Software Engineer <span class="sub-date">· Jul 2022 — Dec 2025</span></div>
+        <div class="row position"><span>Senior Software Engineer</span><span class="date">Jul 2022 — Dec 2025</span></div>
         <ul>
           <li>Led Celestia's first consensus-breaking upgrade (v2.0.0), establishing the framework reused by every subsequent network upgrade</li>
           <li>Authored 1,168 and reviewed 2,427 merged pull requests across celestia-app and celestia-core</li>
@@ -445,14 +251,12 @@
       </div>
 
       <div class="role">
-        <div class="role-head">
-          <div class="role-title">
-            <span class="company">Amazon Web Services</span>
-          </div>
-          <div class="role-date">Jun 2020 — Apr 2022</div>
+        <div class="row">
+          <h3 class="company">Amazon Web Services</h3>
+          <div class="date">Jun 2020 — Apr 2022</div>
         </div>
 
-        <div class="sub-role">Software Development Engineer II</div>
+        <div class="position">Software Development Engineer II</div>
         <ul>
           <li>Expanded <a href="https://aws.amazon.com/about-aws/whats-new/2021/03/announcing-general-availability-of-ethereum-on-amazon-managed-blockchain/" target="_blank" rel="noopener">Ethereum support for Amazon Managed Blockchain</a> to 6 AWS regions</li>
           <li>Recognized as employee of the month 3 times in less than 2 years (team of ~20 engineers)</li>
@@ -461,63 +265,41 @@
       </div>
 
       <div class="role">
-        <div class="role-head">
-          <div class="role-title">
-            <span class="company">Palantir</span>
-          </div>
-          <div class="role-date">Aug 2016 — May 2020</div>
+        <div class="row">
+          <h3 class="company">Palantir</h3>
+          <div class="date">Aug 2016 — May 2020</div>
         </div>
 
-        <div class="sub-role">Software Engineer <span class="sub-date">· Aug 2017 — May 2020</span></div>
+        <div class="row position"><span>Software Engineer</span><span class="date">Aug 2017 — May 2020</span></div>
         <ul>
           <li>Maintained <a href="https://www.palantir.com/docs/foundry/reports/overview" target="_blank" rel="noopener">Foundry Reports</a>, a cross-platform dashboarding application deployed to hundreds of enterprise organizations</li>
           <li>Developed <a href="https://www.palantir.com/docs/foundry/data-connection/overview" target="_blank" rel="noopener">Foundry Data Connection</a> application that connected to external databases and systems to enable automated data pipelines into Foundry</li>
         </ul>
 
-        <div class="sub-role">Forward Deployed Engineer <span class="sub-date">· Aug 2016 — Aug 2017</span></div>
+        <div class="row position"><span>Forward Deployed Engineer</span><span class="date">Aug 2016 — Aug 2017</span></div>
         <ul>
-          <li>Awarded patents: <a href="https://patents.google.com/patent/US20180330241A1" target="_blank" rel="noopener"><em>Tools for chemical manufacturing</em></a> and <a href="https://patents.google.com/patent/US11769096B2/en" target="_blank" rel="noopener"><em>Automated risk visualization</em></a></li>
+          <li>Awarded patents: <a href="https://patents.google.com/patent/US20180330241A1" target="_blank" rel="noopener">Tools for chemical manufacturing</a> and <a href="https://patents.google.com/patent/US11769096B2/en" target="_blank" rel="noopener">Automated risk visualization</a></li>
         </ul>
       </div>
     </section>
 
     <div class="bottom-grid">
 
-      <section style="margin-top:0">
-        <h2 class="section-title"><span>Education</span></h2>
-        <div class="edu-school">
-          <span class="institution">Boston College</span> &nbsp;·&nbsp; Carroll School of Management
+      <section>
+        <h2 class="section-title">Education</h2>
+        <div class="row">
+          <h3 class="company">Boston College</h3>
+          <div class="date">Sep 2012 — May 2016</div>
         </div>
-        <div class="edu-degree">B.S. in Management — Computer Science &amp; Information Systems</div>
-        <div class="edu-date">Sep 2012 — May 2016</div>
-        <div class="edu-honors">
-          Dean's Letter of Commendation &nbsp;·&nbsp; Cum Laude &nbsp;·&nbsp; Co-president, Computer Science Society
-        </div>
+        <div>B.S. in Management, Computer Science &amp; Information Systems, Carroll School of Management</div>
+        <div class="muted">Dean's Letter of Commendation · Cum Laude · Co-president, Computer Science Society</div>
       </section>
 
-      <section style="margin-top:0">
-        <h2 class="section-title"><span>Skills</span></h2>
-
-        <div class="skills-group">
-          <div class="skills-label">Languages</div>
-          <div class="skills-list">
-            Go <span class="pipe">·</span> Rust <span class="pipe">·</span> TypeScript
-          </div>
-        </div>
-
-        <div class="skills-group">
-          <div class="skills-label">Domains</div>
-          <div class="skills-list">
-            Distributed systems <span class="pipe">·</span> Consensus protocols
-          </div>
-        </div>
-
-        <div class="skills-group">
-          <div class="skills-label">Infrastructure</div>
-          <div class="skills-list">
-            AWS <span class="pipe">·</span> Git
-          </div>
-        </div>
+      <section>
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-group"><strong>Languages:</strong> Go, Rust, TypeScript</div>
+        <div class="skills-group"><strong>Domains:</strong> Distributed systems, consensus protocols</div>
+        <div class="skills-group"><strong>Infrastructure:</strong> AWS, Git</div>
       </section>
 
     </div>
