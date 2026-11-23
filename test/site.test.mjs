@@ -237,3 +237,9 @@ test('llms guide states concrete use cases, retrieval instructions, limitations,
   assert.match(guide, /no tool calls, authentication requirements, or write endpoints/)
   for (const path of ['about', 'contact', 'privacy']) assert.ok(guide.includes(`https://rootulp.com/${path}`))
 })
+
+test('homepage and resume do not state an explicit team size for the current role', () => {
+  for (const file of ['src/index.html', 'src/resume.html']) {
+    assert.doesNotMatch(read(file), /8-person/, file)
+  }
+})
